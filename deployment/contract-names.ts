@@ -1,0 +1,25 @@
+import { contractName as dcaPoolFactory } from "../artifacts/contracts/DCAPoolFactory.sol/DCAPoolFactory.json";
+import { contractName as dcaPoolFacade } from "../artifacts/contracts/DCAPoolFacade.sol/DCAPoolFacade.json";
+import { contractName as oneInchBuyStrategy } from "../artifacts/contracts/strategies/OneInchBuyStrategy.sol/OneInchBuyStrategy.json";
+import { contractName as badgerSett } from "../artifacts/contracts/interfaces/IBadgerSett.sol/IBadgerSett.json";
+import { contractName as badgerSettBuyStrategy } from "../artifacts/contracts/strategies/BadgerSettBuyStrategy.sol/BadgerSettBuyStrategy.json";
+import { contractName as chainLinkGasCalculator } from "../artifacts/contracts/ChainLinkGasCalculator.sol/ChainLinkGasCalculator.json";
+import { contractName as mockBuyStrategy } from "../artifacts/contracts/mocks/MockBuyStrategy.sol/MockBuyStrategy.json";
+import { contractName as mockERC20 } from "../artifacts/contracts/mocks/MockERC20.sol/MockERC20.json";
+import { contractName as mockGasCalculator } from "../artifacts/contracts/mocks/MockGasCalculator.sol/MockGasCalculator.json";
+import { contractName as iWithdrawalStrategy } from "../artifacts/contracts/interfaces/IWithdrawalStrategy.sol/IWithdrawalStrategy.json";
+import { contractName as dcaVault } from "../artifacts/contracts/DCAVault.sol/DCAVault.json";
+import { contractName as dcaScheduler } from "../artifacts/contracts/DCAScheduler.sol/DCAScheduler.json";
+
+export const DCA_VAULT: string = dcaVault;
+export const DCA_SCHEDULER: string = dcaScheduler;
+export const DCA_POOL_FACTORY: string = dcaPoolFactory;
+export const DCA_POOL_FACADE: string = dcaPoolFacade;
+export const ONE_INCH_BUY_STRATEGY: string = oneInchBuyStrategy;
+export const BADGER_SETT_BUY_STRATEGY: string = badgerSettBuyStrategy;
+export const BADGER_SETT: string = badgerSett;
+export const CHAINLINK_GAS_CALCULATOR: string = chainLinkGasCalculator;
+export const MOCK_BUY_STRATEGY: string = mockBuyStrategy;
+export const MOCK_ERC_20: string = mockERC20;
+export const MOCK_GAS_CALCULATOR: string = mockGasCalculator;
+export const I_WITHDRAWAL_STRATEGY: string = iWithdrawalStrategy;
