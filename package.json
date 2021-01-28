@@ -1,17 +1,17 @@
 {
-  "name": "@tonic-finance/dca",
-  "description": "DCA Protocol",
+  "name": "@tonic-finance/swirl-protocol",
+  "description": "Swirl Protocol",
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tonic-finance/dca.git"
+    "url": "git+https://github.com/tonic-finance/swirl-protocol.git"
   },
   "author": "Tony Snark",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tonic-finance/dca/issues"
+    "url": "https://github.com/tonic-finance/swirl-protocol/issues"
   },
-  "homepage": "https://github.com/tonic-finance/dca#readme",
+  "homepage": "https://github.com/tonic-finance/swirl-protocol#readme",
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
     "@commitlint/config-conventional": "^9.1.2",
