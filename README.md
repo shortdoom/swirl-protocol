@@ -1,4 +1,4 @@
-# Tonic -- Swirl
+# Tonic 🌀 Swirl
 
 ## Development
 
