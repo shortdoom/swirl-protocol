@@ -1,9 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.7.4;
 pragma experimental ABIEncoderV2;
-import "@openzeppelin/contracts/math/Math.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
-import "@openzeppelin/contracts/utils/EnumerableSet.sol";
 import "@openzeppelin/contracts/utils/SafeCast.sol";
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
@@ -11,7 +9,6 @@ import "@openzeppelin/contracts/proxy/Initializable.sol";
 import "./libs/DCAAccessControl.sol";
 import "./interfaces/IBuyStrategy.sol";
 import "./interfaces/IWithdrawalStrategy.sol";
-import "./interfaces/IGasCalculator.sol";
 import "./interfaces/IDCAScheduler.sol";
 import "./interfaces/IDCAVault.sol";
 
@@ -41,9 +38,7 @@ import "./interfaces/IDCAVault.sol";
  *
  */
 contract DCAVault is IDCAVault, DCAAccessControl, Initializable {
-    using EnumerableSet for EnumerableSet.AddressSet;
     using SafeMath for uint256;
-    using Math for uint256;
     using SafeCast for uint256;
     using SafeERC20 for IERC20;
 
