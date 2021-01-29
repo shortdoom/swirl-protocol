@@ -9,13 +9,7 @@ import {
   MOCK_GAS_CALCULATOR,
   ONE_INCH_BUY_STRATEGY,
 } from "../../deployment/contract-names";
-import {
-  ChainLinkGasCalculator,
-  DcaPoolFacade,
-  DcaPoolFactory,
-  DcaScheduler,
-  OneInchBuyStrategy,
-} from "../../typechain";
+import { ChainLinkGasCalculator, DcaPoolFactory, OneInchBuyStrategy } from "../../typechain";
 import { deploySingletonContract } from "../../utils/deployment";
 import { TASK_DEPLOY } from "../task-names";
 

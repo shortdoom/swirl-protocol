@@ -4,6 +4,20 @@
 
 ### Pre Requisites
 
+#### Toolchain Versions
+
+Supported Node Version: _v14.15.1_
+
+```sh
+$ nvm use
+```
+
+Supported Yarn Version: _1.22.5_
+
+```sh
+$ yvm use
+```
+
 Before running any command, make sure to install dependencies:
 
 ```sh
@@ -66,7 +80,11 @@ Delete the smart contract artifacts, the coverage reports and the Hardhat cache:
 $ yarn clean
 ```
 
-### Deploy
+## Tasks Installation
+
+To enable deployment and operations tasks uncomment import line in [hardhat config](/hardhat.config.ts) after having run `yarn compile` and `yarn typechain`
+
+## Deployment
 
 Deploys all contracts:
 

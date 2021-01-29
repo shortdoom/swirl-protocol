@@ -2,21 +2,32 @@ import { config as dotenvConfig } from "dotenv";
 import { resolve } from "path";
 dotenvConfig({ path: resolve(__dirname, "./.env") });
 import "@nomiclabs/hardhat-etherscan";
+import "hardhat-contract-sizer";
 import { HardhatUserConfig } from "hardhat/config";
 import { NetworkUserConfig } from "hardhat/types";
-import "./tasks/accounts";
-import "./tasks/clean";
-import "./tasks/deployment/deploy";
-import "./tasks/operations/enable-base-token";
-import "./tasks/operations/enable-order-token";
-import "./tasks/operations/add-pool";
-import "./tasks/operations/add-role";
-import "./tasks/operations/set-fees";
-
 import "@nomiclabs/hardhat-waffle";
 import "@nomiclabs/hardhat-ganache";
 import "hardhat-typechain";
 import "solidity-coverage";
+import "./tasks/accounts";
+import "./tasks/clean";
+
+/**
+ *
+ *
+ *
+ * TO ENABLE DEPLOYMENT AND OPERATIONS TASKS
+ *        UNCOMMENT LINES BELOW
+ *
+ *
+ */
+
+// import "./tasks/deployment/deploy";
+// import "./tasks/operations/enable-base-token";
+// import "./tasks/operations/enable-order-token";
+// import "./tasks/operations/add-pool";
+// import "./tasks/operations/add-role";
+// import "./tasks/operations/set-fees";
 
 const chainIds = {
   ganache: 1337,
