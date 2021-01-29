@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { MockContract } from "ethereum-waffle";
-import { BigNumber, constants } from "ethers";
+import { BigNumber } from "ethers";
 import { waffle } from "hardhat";
 import DCASchedulerABI from "../../artifacts/contracts/DCAScheduler.sol/DCAScheduler.json";
 import DCAVaultABI from "../../artifacts/contracts/DCAVault.sol/DCAVault.json";
@@ -27,7 +27,7 @@ describe("DCAScheduler", function () {
   let contractAsExecutor: DcaScheduler;
 
   const provider = waffle.provider;
-  const [deployerWallet, userWallet, userWallet2, executorWallet, userWallet3] = provider.getWallets();
+  const [deployerWallet, userWallet, , executorWallet] = provider.getWallets();
 
   beforeEach(async () => {
     const { deployMockContract, deployContract } = waffle;

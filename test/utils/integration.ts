@@ -35,21 +35,26 @@ export const USDC_DECIMALS = 6;
 export const REN_BTC_DECIMALS = 8;
 export const WBTC_DECIMALS = 8;
 
-export async function sudo_TransferToken(token: string, owner: string, amount: BigNumber, recipient: string) {
-  sudo(owner, (signer: Signer) => {
+export async function sudo_TransferToken(
+  token: string,
+  owner: string,
+  amount: BigNumber,
+  recipient: string,
+): Promise<void> {
+  return sudo(owner, (signer: Signer) => {
     const tokenContract = new Contract(token, ERC20ABI.abi, signer) as Erc20;
     return tokenContract.transfer(recipient, amount);
   });
 }
 
-export async function sudo_AllowContractAccessInSett(sett: string, contract: string) {
-  sudo(BADGER_GOVERNANCE, (signer: Signer) => {
+export async function sudo_AllowContractAccessInSett(sett: string, contract: string): Promise<void> {
+  return sudo(BADGER_GOVERNANCE, (signer: Signer) => {
     const settContract = new Contract(sett, BADGER_SETT.abi, signer) as IBadgerSett;
     return settContract.approveContractAccess(contract);
   });
 }
 
-async function sudo(sudoUser: string, block: (signer: Signer) => Promise<any>) {
+async function sudo(sudoUser: string, block: (signer: Signer) => Promise<unknown>) {
   await hre.network.provider.request({
     method: "hardhat_impersonateAccount",
     params: [sudoUser],
@@ -58,8 +63,8 @@ async function sudo(sudoUser: string, block: (signer: Signer) => Promise<any>) {
   await block(signer);
 }
 
-export async function sentEth(to: string, amount: string, wallet: Signer) {
-  let tx = {
+export async function sentEth(to: string, amount: string, wallet: Signer): Promise<void> {
+  const tx = {
     to,
     value: utils.parseEther(amount),
   };
@@ -67,7 +72,7 @@ export async function sentEth(to: string, amount: string, wallet: Signer) {
   await wallet.sendTransaction(tx);
 }
 
-export async function resetFork() {
+export async function resetFork(): Promise<void> {
   await hre.network.provider.request({
     method: "hardhat_reset",
     params: [
@@ -81,7 +86,7 @@ export async function resetFork() {
   });
 }
 
-export async function deployContract<T extends Contract>(contractName: string, args: Array<any> = []): Promise<T> {
+export async function deployContract<T extends Contract>(contractName: string, args: Array<unknown> = []): Promise<T> {
   const contractFactory: ContractFactory = await hre.ethers.getContractFactory(contractName);
   const contract: Contract = await contractFactory.deploy(...args);
   await contract.deployed();

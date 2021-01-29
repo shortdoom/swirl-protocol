@@ -13,16 +13,16 @@ export const SECONDS_IN_PERIOD = [
   SECONDS_IN_DAY * 90,
 ];
 
-export async function getCurrentTimeStamp() {
+export async function getCurrentTimeStamp(): Promise<number> {
   const blockNumber = await ethers.provider.getBlockNumber();
   return (await ethers.provider.getBlock(blockNumber)).timestamp;
 }
 
-export async function advanceBlockAtTime(time: number) {
+export async function advanceBlockAtTime(time: number): Promise<void> {
   await ethers.provider.send("evm_mine", [time]);
 }
 
-export async function advanceBlockBySeconds(secondsToAdd: number) {
+export async function advanceBlockBySeconds(secondsToAdd: number): Promise<void> {
   const newTimestamp = (await getCurrentTimeStamp()) + secondsToAdd;
   await ethers.provider.send("evm_mine", [newTimestamp]);
 }
@@ -36,8 +36,8 @@ export async function callContractWithMetaTransaction(
   functionSignature: Uint8Array,
   contract: Contract,
   signer: Signer,
-) {
-  let messageToSign = utils.solidityKeccak256(
+): Promise<void> {
+  const messageToSign = utils.solidityKeccak256(
     ["uint256", "address", "uint256", "bytes"],
     [nonce, contract.address, chainId, functionSignature],
   );
@@ -50,5 +50,9 @@ export async function callContractWithMetaTransaction(
   await contract.executeMetaTransaction(signerAddress, functionSignature, r, s, v);
 }
 
-export const isNotZero = (e: number) => e != 0;
-export const toNumber = (e: BigNumber) => e.toNumber();
+export function isNotZero(e: number): boolean {
+  return e != 0;
+}
+export function toNumber(e: BigNumber): number {
+  return e.toNumber();
+}

@@ -30,7 +30,6 @@ describe("DCAVault", function () {
 
   let contract: DcaVault;
   let contractAsUser: DcaVault;
-  let contractAsExecutor: DcaVault;
   let contractAsUser2: DcaVault;
   let contractAsUser3: DcaVault;
 
@@ -50,7 +49,6 @@ describe("DCAVault", function () {
     contractAsUser = contract.connect(userWallet);
     contractAsUser2 = contract.connect(userWallet2);
     contractAsUser3 = contract.connect(userWallet3);
-    contractAsExecutor = contract.connect(executorWallet);
     await scheduler.addVault(contract.address);
     await contract.initialize(
       mockBuyStrategy.address,

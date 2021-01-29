@@ -30,12 +30,12 @@ task(TASK_ADD_ROLE, "Add address as role")
 
       const facade: DcaPoolFacade = await deployedContract(hre, DCA_POOL_FACADE);
       const scheduler: DcaScheduler = await deployedContract(hre, DCA_SCHEDULER);
+      const factory: DcaPoolFactory = await deployedContract(hre, DCA_POOL_FACTORY);
 
       const normalizedAddress = ethers.utils.getAddress(address);
 
       switch (role) {
         case Role.ADMIN:
-          const factory: DcaPoolFactory = await deployedContract(hre, DCA_POOL_FACTORY);
           console.log("Adding admin to factory");
           await factory.addAdmin(normalizedAddress);
 

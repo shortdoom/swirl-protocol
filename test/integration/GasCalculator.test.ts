@@ -1,6 +1,4 @@
 import { expect } from "chai";
-import { Signer } from "ethers";
-import { ethers } from "hardhat";
 import { CHAINLINK_GAS_CALCULATOR } from "../../deployment/contract-names";
 import { ChainLinkGasCalculator } from "../../typechain";
 import {
@@ -14,13 +12,9 @@ import {
 } from "../utils/integration";
 
 describe("Gas Calculator", function () {
-  let myWallet: Signer;
-  let myWalletAddress: string;
   let gasCalculator: ChainLinkGasCalculator;
   beforeEach(async () => {
     await resetFork();
-    [myWallet] = await ethers.getSigners();
-    myWalletAddress = await myWallet.getAddress();
     gasCalculator = await deployContract(CHAINLINK_GAS_CALCULATOR);
     await gasCalculator.addFeed(USDC, ETH, USDC_ETH_PRICE_FEED, USDC_DECIMALS, ETH_DECIMALS);
   });

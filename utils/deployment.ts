@@ -5,6 +5,7 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 const HISTORY_DIR = "deployment/history";
 function persistAddress(hre: HardhatRuntimeEnvironment, label: string, address: string) {
   const fileName = `deployment/constants-${hre.network.name}.json`;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let constants: any = {};
   if (!fs.existsSync(HISTORY_DIR)) {
     fs.mkdirSync(HISTORY_DIR);
@@ -20,6 +21,7 @@ function persistAddress(hre: HardhatRuntimeEnvironment, label: string, address: 
 
 export function deployedAddress(hre: HardhatRuntimeEnvironment, label: string): string {
   const fileName = `deployment/constants-${hre.network.name}.json`;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let constants: any = {};
   if (fs.existsSync(fileName)) {
     const rawdata = fs.readFileSync(fileName).toString();
@@ -30,19 +32,19 @@ export function deployedAddress(hre: HardhatRuntimeEnvironment, label: string): 
 
 export async function deploySingletonContract<T extends Contract>(
   hre: HardhatRuntimeEnvironment,
-  force: Boolean,
+  force: boolean,
   contractName: string,
-  args: Array<any> = [],
+  args: Array<unknown> = [],
 ): Promise<T> {
   return deployContractInstance(hre, force, contractName, contractName, args);
 }
 
 export async function deployContractInstance<T extends Contract>(
   hre: HardhatRuntimeEnvironment,
-  force: Boolean,
+  force: boolean,
   contractName: string,
   instanceName: string,
-  args: Array<any> = [],
+  args: Array<unknown> = [],
 ): Promise<T> {
   if (force || !deployedAddress(hre, contractInstanceName(contractName, instanceName))) {
     console.log("Deploying ", contractName);

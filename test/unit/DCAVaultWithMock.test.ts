@@ -25,7 +25,7 @@ describe("DCA Vault Mock Interaction", function () {
   let contract: DcaVault;
 
   const provider = new MockProvider();
-  const [deployerWallet, executorWallet, userWallet] = provider.getWallets();
+  const [deployerWallet, userWallet] = provider.getWallets();
 
   beforeEach(async () => {
     mockScheduler = await deployMockContract(deployerWallet, DCASchedulerABI.abi);

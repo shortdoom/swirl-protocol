@@ -14,17 +14,7 @@ import {
   MOCK_GAS_CALCULATOR,
 } from "../deployment/contract-names";
 import { DcaPoolFacade, Ierc20, MockBuyStrategy } from "../typechain";
-import { Period } from "../types/types";
 import { deployContractInstance, deploySingletonContract } from "../utils/deployment";
-
-async function getCurrentTimeStamp() {
-  const blockNumber = await ethers.provider.getBlockNumber();
-  return (await ethers.provider.getBlock(blockNumber)).timestamp;
-}
-
-async function advanceBlockAtTime(time: number) {
-  await ethers.provider.send("evm_mine", [time]);
-}
 
 async function main(): Promise<void> {
   console.log("Deployment Started.");

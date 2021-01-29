@@ -19,7 +19,7 @@ task(TASK_ENABLE_ORDER_TOKEN, "Add price feed to buy strategy")
       const normalizedQuoteAddress = ethers.utils.getAddress(quoteAddress);
       const normalizedFeedAddress = ethers.utils.getAddress(feed);
       const buyStrategy: OneInchBuyStrategy = await deployedContract(hre, ONE_INCH_BUY_STRATEGY);
-      buyStrategy.addFeed(
+      await buyStrategy.addFeed(
         normalizedBaseAddress,
         normalizedQuoteAddress,
         normalizedFeedAddress,

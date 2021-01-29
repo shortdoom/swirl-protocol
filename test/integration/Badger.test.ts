@@ -22,7 +22,6 @@ describe("Badger Integration", function () {
   let myWallet: Signer;
   let myWalletAddress: string;
   let usdcContract: Erc20;
-  let renBTCSettContract: Erc20;
   let buyStrategy: BadgerSettBuyStrategy;
   beforeEach(async () => {
     await resetFork();
@@ -33,7 +32,6 @@ describe("Badger Integration", function () {
     buyStrategy = await deployContract(BADGER_SETT_BUY_STRATEGY);
     await buyStrategy.enableSellToken(USDC);
     await usdcContract.approve(buyStrategy.address, utils.parseUnits("100000.0", USDC_DECIMALS));
-    renBTCSettContract = new Contract(renBTCSett, ERC20ABI.abi, myWallet) as Erc20;
     await sentEth(BADGER_GOVERNANCE, "10.0", myWallet);
     await sudo_AllowContractAccessInSett(tBTCSett, buyStrategy.address);
     await sudo_AllowContractAccessInSett(sBTCSett, buyStrategy.address);

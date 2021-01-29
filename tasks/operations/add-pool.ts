@@ -18,6 +18,7 @@ task(TASK_ADD_POOL, "Add pool")
   .addParam("scaling", "Base Token Scaling Factor exponent", "", types.int)
   .setAction(
     async ({ base, order, period, scaling }, hre): Promise<void> => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       async function addPool(_period: any) {
         if (!(_period in Period)) {
           throw new Error("Invalid enum val:" + _period);

@@ -40,7 +40,7 @@ describe("Sliding Window", function () {
     });
 
     it("Initializes values correctly", async function () {
-      assertWindowIs([]);
+      await assertWindowIs([]);
     });
   });
 
@@ -129,7 +129,7 @@ describe("Sliding Window", function () {
 
     it("Sets correct values for single addition and edit", async function () {
       await contract.edit(0, 0, 2, 5);
-      assertWindowIs([2, 2, 2, 2]);
+      await assertWindowIs([2, 2, 2, 2]);
       await contract.edit(1, 5, 3, 7);
       /*
        * [2,2,2,2] -

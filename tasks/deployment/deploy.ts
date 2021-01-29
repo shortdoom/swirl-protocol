@@ -63,12 +63,12 @@ task(TASK_DEPLOY, "Deploys all contracts for the DCA protocol")
           scheduler.address,
         ]);
 
-        if (!!admin) {
-          facade.addAdmin(admin);
-          factory.addAdmin(admin);
-          gasCalculator.addAdmin(admin);
-          buyStrategy.addAdmin(admin);
-          scheduler.addAdmin(admin);
+        if (admin) {
+          await facade.addAdmin(admin);
+          await factory.addAdmin(admin);
+          await gasCalculator.addAdmin(admin);
+          await buyStrategy.addAdmin(admin);
+          await scheduler.addAdmin(admin);
         }
         console.log("Adding executor: ", executor);
         await facade.addExecutor(executor);

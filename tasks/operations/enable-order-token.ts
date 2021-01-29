@@ -33,9 +33,9 @@ task(TASK_ENABLE_ORDER_TOKEN, "Enables an order token for the DCA protocol")
         console.log("Enabling order token in gas calculator");
         const ethAddress = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
         if (ethIsBase) {
-          gasCalculator.addFeed(ethAddress, normalizedTokenAddress, normalizedFeedAddress, 18, decimals);
+          await gasCalculator.addFeed(ethAddress, normalizedTokenAddress, normalizedFeedAddress, 18, decimals);
         } else {
-          gasCalculator.addFeed(normalizedTokenAddress, ethAddress, normalizedFeedAddress, decimals, 18);
+          await gasCalculator.addFeed(normalizedTokenAddress, ethAddress, normalizedFeedAddress, decimals, 18);
         }
       }
     },

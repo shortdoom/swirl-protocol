@@ -17,7 +17,7 @@ task(TASK_SET_FEES, "Set fees and recipient")
 
       console.log("Setting fees to: ", fees);
       await scheduler.setFeesInBPS(fees);
-      if (!!recipient) {
+      if (recipient) {
         const normalizedAddress = ethers.utils.getAddress(recipient);
         console.log("Setting fees recipient to: ", normalizedAddress);
         await scheduler.setFeesRecipient(normalizedAddress);
