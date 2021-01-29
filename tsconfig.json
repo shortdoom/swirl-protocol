@@ -22,7 +22,7 @@
     "typechain/**/*",
     "types/**/*",
     "hardhat.config.ts",
-    "utils/deployment.ts",
+    "utils/**/*",
     "defender/**/*"
   ]
 }
