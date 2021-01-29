@@ -112,6 +112,11 @@ contract DCAVault is IDCAVault, DCAAccessControl, Initializable {
         );
     }
 
+    /**
+     * @notice Callback function to notify this vault of a performed execution
+     * @param totalSellQty How much was sold
+     * @param totalBuyQty How much was bought
+     */
     function onExecution(uint256 totalSellQty, uint256 totalBuyQty) public override onlyScheduler {
         uint256 previousResult = cumulativeIndexes[cumulativeIndexes.length - 1];
         uint256 price = totalBuyQty.mul(_SCALING_FACTOR).div(totalSellQty);
@@ -120,6 +125,11 @@ contract DCAVault is IDCAVault, DCAAccessControl, Initializable {
         usersOrderTokenBalance = usersOrderTokenBalance.add(totalBuyQty);
     }
 
+    /**
+     * @notice Creates an account for the sender of the transaction
+     * @param qtyPerCycle How much to sell for each cycle
+     * @param numberOfCycles How many times to perform the sale
+     */
     function createAccount(uint256 qtyPerCycle, uint256 numberOfCycles) public override {
         require(
             qtyPerCycle > 0 && numberOfCycles > 0 && numberOfCycles < _scheduler.maxCycles(),
@@ -151,6 +161,11 @@ contract DCAVault is IDCAVault, DCAAccessControl, Initializable {
         emit AccountModified(accountOwner, qtyPerCycle, numberOfCycles);
     }
 
+    /**
+     * @notice Amends an account for the sender of the transaction
+     * @param newQtyPerCycle How much to sell for each cycle
+     * @param numberOfCycles How many times to perform the sale
+     */
     function editAccount(uint256 newQtyPerCycle, uint256 numberOfCycles) public override {
         // Validate input
         require(
@@ -191,6 +206,12 @@ contract DCAVault is IDCAVault, DCAAccessControl, Initializable {
         emit AccountModified(accountOwner, newQtyPerCycle, numberOfCycles);
     }
 
+    /**
+     * @dev Processes a changes in base token baance for an account
+     * @param baseTokenBalance Current base token balance
+     * @param newTotalQty New wanted balance
+     * @param accountOwner Account owner's address
+     */
     function _processBalanceChange(
         uint256 baseTokenBalance,
         uint256 newTotalQty,
@@ -216,6 +237,9 @@ contract DCAVault is IDCAVault, DCAAccessControl, Initializable {
         editAccount(0, 0);
     }
 
+    /**
+     * @notice Withdraw order token balance for a user
+     */
     function withdraw() public override {
         address accountOwner = msg.sender;
         uint256 withdrawalAmount = orderTokenBalanceOf(accountOwner);
@@ -291,6 +315,11 @@ contract DCAVault is IDCAVault, DCAAccessControl, Initializable {
         return address(_withdrawalStrategy) != address(0);
     }
 
+    /**
+     * @notice Returns the base token balance for an address
+     * @param owner Address to check
+     * @return balance Base token balance
+     */
     function baseTokenBalanceOf(address owner) public view returns (uint256 balance) {
         Account memory account = accountByOwner[owner];
         uint256 currentCycle = cumulativeIndexes.length;
@@ -298,6 +327,11 @@ contract DCAVault is IDCAVault, DCAAccessControl, Initializable {
         balance = uint256(account.qtyPerCycle).mul(cyclesLeft);
     }
 
+    /**
+     * @notice Returns the order token balance for an address
+     * @param owner Address to check
+     * @return balance Order token balance
+     */
     function orderTokenBalanceOf(address owner) public view returns (uint256 balance) {
         Account memory account = accountByOwner[owner];
         balance = account.orderTokenBalance;
