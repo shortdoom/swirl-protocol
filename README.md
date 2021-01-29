@@ -4,6 +4,10 @@
 
 ### Pre Requisites
 
+#### Environment variable
+
+To use this project you need a .env file with the required variables. An [example file](.env.example) is provided for convenience, rename it to .env and add the appropriate values.
+
 #### Toolchain Versions
 
 Supported Node Version: _v14.15.1_
