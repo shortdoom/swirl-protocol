@@ -42,6 +42,10 @@ describe("Sliding Window", function () {
     it("Initializes values correctly", async function () {
       await assertWindowIs([]);
     });
+
+    it("Reverts on double initialization", async function () {
+      await expect(contract.init(1)).to.be.revertedWith("SW:ALREADY_INIT");
+    });
   });
 
   describe("Validation", async function () {

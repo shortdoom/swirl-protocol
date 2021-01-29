@@ -52,6 +52,7 @@ library SlidingWindow {
      * @param scalingFactor Value by which to compress elements' value
      */
     function init(CompressedCircularBuffer storage buffer, uint256 scalingFactor) internal {
+        require(buffer.nextVirtualIndex == 0, "SW:ALREADY_INIT");
         buffer.nextVirtualIndex = 1;
         buffer.scalingFactor = scalingFactor;
     }

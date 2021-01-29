@@ -19,6 +19,10 @@ contract SlidingWindowTest {
         window.init(_scalingFactor);
     }
 
+    function init(uint256 _scalingFactor) public {
+        window.init(_scalingFactor);
+    }
+
     function edit(
         uint256 previousQty,
         uint256 previousEndCycle,
