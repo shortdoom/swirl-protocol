@@ -168,3 +168,7 @@ Sets fees and recipient
 ```sh
 $ yarn hardhat --network localhost  set-fees --fees 200  --recipient 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 ```
+
+## Credits
+
+This project structure is derived from the highly recommended [solidity template](https://github.com/paulrberg/solidity-template)
